@@ -1,17 +1,13 @@
+import { createStore } from "vuex";
 import todo from "./modules/todo/index";
 
-import Vuex from 'vuex';
-import Vue from "vue";
-
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
   namespaced: true,
-  state:{},
-  mutations:{},
-  actions:{},
-  getters:{},
-  modules:{
+  state: {},
+  mutations: {},
+  actions: {},
+  getters: {},
+  modules: {
     todo,
-  }
+  },
 });

@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+
+import { mapGetters } from 'vuex';
 
 export default {
     data() {
@@ -27,7 +28,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            todosCount: "todo/todosCount",
+            todosCount:"todo/todosCount"
         }),
     },
     methods: {
