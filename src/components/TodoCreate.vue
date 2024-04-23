@@ -15,33 +15,32 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
+import { useStore } from "vuex";
 
-import { mapGetters } from 'vuex';
+/** todoStore */
+const todoStore = useStore();
+/** todoStore */
 
-export default {
-    data() {
-        return {
-            todo: "",
-            todoError: null
-        }
-    },
-    computed: {
-        ...mapGetters({
-            todosCount:"todo/todosCount"
-        }),
-    },
-    methods: {
-        createToDo() {
-            if (this.todo.length === 0) {
-                this.todoError = "Invalid input!";
-                return false;
-            }
-            var id = this.todosCount + 1;
-            var newtodo = { id: id, name: this.todo, done: false, rejected: false };
-            this.$store.dispatch("todo/addTodo", newtodo);
-            this.todo = "";
-        }
+/** template vars */
+let todo = ref("");
+let todoError = ref(null);
+let todosCount = ref(0);
+/** template vars */
+
+
+/** methods declarations */
+var createToDo = () => {
+    if (todo.value.length === 0) {
+        todoError.value = "Invalid input!";
+        return false;
     }
+    var id = todosCount.value + 1;
+    var newtodo = { id: id, name: todo.value, done: false, rejected: false };
+    todoStore.dispatch("todo/addTodo", newtodo);
+    todo.value = "";
 }
+/** methods declarations */
+
 </script>

@@ -46,24 +46,30 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: [ 'todo' ],
-    data() {
-        return {
+<script setup>
+import { useStore } from 'vuex';
+import { defineProps } from 'vue';
 
-        }
-    },
-    methods: {
-        rejectToDo(id) {
-            this.$store.dispatch("todo/rejectTodo", id);
-        },
-        deleteToDo(id) {
-            this.$store.dispatch("todo/deleteTodo", id);
-        },
-        doneToDo(id) {
-            this.$store.dispatch("todo/doneTodo", id);
-        },
-    },
+/** todoStore */
+const todoStore  = useStore();
+/** todoStore */
+
+/** defining props */
+defineProps(['todo']);
+/** defining props */
+
+
+/** methods declarations */
+function rejectToDo(id){
+    todoStore.dispatch("todo/rejectTodo",id);
 }
+
+function deleteToDo(id) {
+    todoStore.dispatch("todo/deleteTodo", id);
+}
+
+function doneToDo(id) {
+    todoStore.dispatch("todo/doneTodo", id);
+}
+/** methods declarations */
 </script>
